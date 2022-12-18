@@ -1,5 +1,3 @@
-console.log(`Months: ${finances.length}`);
-
 let total = 0;
 let changes =[];
 
@@ -15,11 +13,10 @@ for (let x = 0, len = finances.length; x < len; x++) {
 
 }
 
-console.log(`Net p/l: ${total}`);
-
 // [Changes is now an array of the difference between each month]
 // Add every item together and divide by the length for an average
 const average = changes.reduce((a, b) => a + b, 0) / changes.length;
 
-
+console.log(`Months: ${finances.length}`);
+console.log(`Net p/l: ${total}`);
 console.log(`Average change: ${average}`)
