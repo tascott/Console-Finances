@@ -22,17 +22,22 @@ function calculate(){
     const average = changes.reduce((a, b) => a + b, 0) / changes.length;
 
     console.log(`Months: ${finances.length}`);
+    document.getElementById('total-months').innerHTML = ` ${finances.length}`;
     console.log(`Net p/l: ${total}`);
+    document.getElementById('total-p-l').innerHTML = ` ${total}`;
     console.log(`Average change: $${average.toFixed(2)}`);
+    document.getElementById('ave-change').innerHTML = ` $${average.toFixed(2)}`;
 
     // Sort the current array from the greatest change to greatest negative change
-    let sortedFinances = updatedFinances.sort((a, b) => {
+    let sortedFinances = [...updatedFinances].sort((a, b) => {
         return b[2] - a[2]
     }).splice(1); // And remove the first item as it has no 'change'
 
 
     console.log(`Greatest Increase in Profits: ${sortedFinances[0][0]} - $${sortedFinances[0][2]}`);
+    document.getElementById('best-month').innerHTML = ` ${sortedFinances[0][0]} - $${sortedFinances[0][2]}`;
     console.log(`Greatest Decrease in Profits: ${sortedFinances[sortedFinances.length-1][0]} - $${sortedFinances[sortedFinances.length-1][2]}`);
+    document.getElementById('worst-month').innerHTML = ` ${sortedFinances[sortedFinances.length-1][0]} - $${sortedFinances[sortedFinances.length-1][2]}`;
 }
 
 calculate(); // Run on first load with current data
