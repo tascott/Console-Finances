@@ -28,7 +28,15 @@ console.log(`Average change: $${average.toFixed(2)}`);
 let sortedFinances = updatedFinances.sort((a, b) => {
     return b[2] - a[2]
 }).splice(1); // And remove the first item as it has no 'change'
+var form = document.getElementById("new-data");
+function handleForm(event) {
+    event.preventDefault();
+    let date = document.getElementById('date')
+    let amount = document.getElementById('profit')
+    console.log(date, amount);
 
+    date.value = '';
+    amount.value = '';
 
-console.log(`Greatest Increase in Profits: ${sortedFinances[0][0]} - $${sortedFinances[0][2]}`);
-console.log(`Greatest Decrease in Profits: ${sortedFinances[sortedFinances.length-1][0]} - $${sortedFinances[sortedFinances.length-1][2]}`);
+}
+form.addEventListener('submit', handleForm);
