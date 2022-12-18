@@ -7,6 +7,22 @@
   <title>M4 Challenge</title>
 </head>
 <body>
+  <main class="container">
+    <form id="new-data">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date"><br><br>
+      <label for="profit">Profit/Loss:</label>
+      <input type="text" id="profit" name="profit"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <div class="data">
+      <h4>Total Months: <span id="total-months"></span></h4>
+      <h4>Total Profit/Loss: <span id="total-p-l"></span></h4>
+      <h4>Average Change: <span id="ave-change"></span></h4>
+      <h4>Best Month: <span id="best-month"></span></h4>
+      <h4>Worst Months: <span id="worst-month"></span></h4>
+    </div>
+  </main>
   <script src="data.js"></script>
   <script src="index.js"></script>
 </body>
