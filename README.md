@@ -6,7 +6,7 @@ A single page that displays via basic HTML and the console, some calculations an
 
 ## Installation
 
-Just open index.html in your browser.
+Just open index.html (and open the console) in your browser.
 
 ## Usage
 
