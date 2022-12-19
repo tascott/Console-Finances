@@ -8,14 +8,13 @@ function calculate(){
         // Add the profit or loss of each month to a variable
         total += updatedFinances[x][1];
 
-        if (updatedFinances[x+1]) { // check there is still two items to compare
+        if (updatedFinances[x+1] && updatedFinances[x+1].length <= 2) {  // If the 'change' doesn't exist in each array yet, then add it // check there is still two items to compare
             // Subtract the difference between item i and the one before it, and push to [changes] array
             monthOnMonthChange.push(updatedFinances[x+1][1] - updatedFinances[x][1]);
             // Add an item to each month to show the difference betwen the changes
             updatedFinances[x+1].push(updatedFinances[x+1][1] - updatedFinances[x][1]);
         }
     }
-
     // [Changes is now an array of the difference between each month]
     // Add every item together and divide by the length for an average
     const average = monthOnMonthChange.reduce((a, b) => a + b, 0) / monthOnMonthChange.length;
@@ -30,7 +29,6 @@ function calculate(){
 
 //Separate this out as it was clogging up the logic in the main function
 function logData(months, total, average, sortedFinances){
-
     console.log(`Months: ${months}`);
     document.getElementById('total-months').innerHTML = ` ${months}`;
 
@@ -49,9 +47,7 @@ function logData(months, total, average, sortedFinances){
 
 calculate(); // Run on first load with current data
 
-
 var form = document.getElementById("new-data");
-
 
 function addNewMonth(event) {
     event.preventDefault();
