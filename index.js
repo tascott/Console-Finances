@@ -55,13 +55,23 @@ var form = document.getElementById("new-data");
 
 function addNewMonth(event) {
     event.preventDefault();
-    let date = document.getElementById('date')
-    let amount = document.getElementById('profit')
-    console.log(date, amount);
+    let date = document.getElementById('date') //Date user input
+    let amount = document.getElementById('profit') //Amount user input
 
-    date.value = '';
-    amount.value = '';
+    //Convert the date to the same format as the data
+    let sanitisedDate = new Date(date.value).toLocaleString('en-us',{month:'short', year:'numeric'}).replace(/\s+/g, '-');
 
+    if(amount.value && date.value) {
+        //Add this to the main data
+        updatedFinances.push([sanitisedDate, Number(amount.value)])
+
+        //Reset the boxes
+        date.value = '';
+        amount.value = '';
+
+        //Run the code again with the updated array
+        calculate();
+    }
 }
 
 form.addEventListener('submit', addNewMonth);
