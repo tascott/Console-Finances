@@ -19,25 +19,33 @@ function calculate(){
 
     // [Changes is now an array of the difference between each month]
     // Add every item together and divide by the length for an average
-    const average = changes.reduce((a, b) => a + b, 0) / changes.length;
-
-    console.log(`Months: ${finances.length}`);
-    document.getElementById('total-months').innerHTML = ` ${finances.length}`;
-    console.log(`Net p/l: ${total}`);
-    document.getElementById('total-p-l').innerHTML = ` ${total}`;
-    console.log(`Average change: $${average.toFixed(2)}`);
-    document.getElementById('ave-change').innerHTML = ` $${average.toFixed(2)}`;
+    const average = monthOnMonthChange.reduce((a, b) => a + b, 0) / monthOnMonthChange.length;
 
     // Sort the current array from the greatest change to greatest negative change
     let sortedFinances = [...updatedFinances].sort((a, b) => {
         return b[2] - a[2]
     }).splice(1); // And remove the first item as it has no 'change'
 
+    logData(updatedFinances.length, total, average.toFixed(2), sortedFinances);
+}
 
-    console.log(`Greatest Increase in Profits: ${sortedFinances[0][0]} - $${sortedFinances[0][2]}`);
-    document.getElementById('best-month').innerHTML = ` ${sortedFinances[0][0]} - $${sortedFinances[0][2]}`;
-    console.log(`Greatest Decrease in Profits: ${sortedFinances[sortedFinances.length-1][0]} - $${sortedFinances[sortedFinances.length-1][2]}`);
-    document.getElementById('worst-month').innerHTML = ` ${sortedFinances[sortedFinances.length-1][0]} - $${sortedFinances[sortedFinances.length-1][2]}`;
+//Separate this out as it was clogging up the logic in the main function
+function logData(months, total, average, sortedFinances){
+
+    console.log(`Months: ${months}`);
+    document.getElementById('total-months').innerHTML = ` ${months}`;
+
+    console.log(`Net p/l: $${total.toLocaleString()}`);
+    document.getElementById('total-p-l').innerHTML = ` $${total.toLocaleString()}`;
+
+    console.log(`Average change: $${average}`);
+    document.getElementById('ave-change').innerHTML = ` $${average}`;
+
+    console.log(`Greatest Increase in Profits = ${sortedFinances[0][0]} : $${sortedFinances[0][2].toLocaleString()}`);
+    document.getElementById('best-month').innerHTML = ` ${sortedFinances[0][0]} : $${sortedFinances[0][2].toLocaleString()}`;
+
+    console.log(`Greatest Decrease in Profits = ${sortedFinances[sortedFinances.length-1][0]} : $${sortedFinances[sortedFinances.length-1][2].toLocaleString()}`);
+    document.getElementById('worst-month').innerHTML = ` ${sortedFinances[sortedFinances.length-1][0]} : $${sortedFinances[sortedFinances.length-1][2].toLocaleString()}`;
 }
 
 calculate(); // Run on first load with current data
